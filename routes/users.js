@@ -3,12 +3,12 @@ const { Router } = require('express');
 const { getMethod,postMethod,deleteMethod} = require('../controllers/usersController');
 const router = Router();
 
-router.get('/', getMethod);
+router.get('/users', getMethod);
 
 //post verb
-router.post('/', postMethod);
+router.post('/users', postMethod);
 
 //delete verb
-router.delete('/', deleteMethod);
+router.delete('/users', deleteMethod);
 
 module.exports = router;
