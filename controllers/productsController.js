@@ -2,7 +2,7 @@ const {
     response
 } = require('express')
 
-const productos = require('../data/productos');
+const productos = require('../dataModels/productos');
 
 const getProducts = (req, res = response) => {
 

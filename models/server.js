@@ -2,6 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('Cors')
+const conectarMongo = require('../config/mongoConfig')
 
 class Server {
 
@@ -11,9 +12,11 @@ class Server {
         this.routesPath = '/api'
         this.middleware();
         this.routes();
+        this.MongoDB();
     }
 
     middleware() {
+        this.app.use(express.json());
         this.app.use(express.static('public'));
         this.app.use(cors());
     }
@@ -21,6 +24,8 @@ class Server {
     routes() {
         this.app.use(this.routesPath,require('../routes/users'))
         this.app.use(this.routesPath,require('../routes/Products'))
+        this.app.use(this.routesPath,require('../routes/mongoRoute'))
+        this.app.use(this.routesPath,require('../routes/alimentos'))
     }
 
     listen() {
@@ -28,6 +33,10 @@ class Server {
             console.log(`Server running on port: http://127.0.0.1:${this.port}/api`)
         })
     }
+
+    MongoDB(){
+        conectarMongo()
+    }   
 
 }
 
