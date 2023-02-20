@@ -2,7 +2,7 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('Cors')
-const conectarMongo = require('../config/mongoConfig')
+const conectarMongo = require('../config/mongo.Config')
 
 class Server {
 
@@ -12,7 +12,7 @@ class Server {
         this.routesPath = '/api'
         this.middleware();
         this.routes();
-        this.MongoDB();
+        //this.MongoDB();
     }
 
     middleware() {
@@ -22,10 +22,11 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.routesPath,require('../routes/users'))
-        this.app.use(this.routesPath,require('../routes/Products'))
-        this.app.use(this.routesPath,require('../routes/mongoRoute'))
-        this.app.use(this.routesPath,require('../routes/alimentos'))
+        this.app.use(this.routesPath,require('../routes/users.route'))
+        this.app.use(this.routesPath,require('../routes/products.route'))
+        this.app.use(this.routesPath,require('../routes/mongo.route'))
+        this.app.use(this.routesPath,require('../routes/alimentos.route'))
+        this.app.use(this.routesPath,require('../routes/stacks.route'))
     }
 
     listen() {
